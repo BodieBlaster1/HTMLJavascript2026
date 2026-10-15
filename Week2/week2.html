@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <title>week 2 god i cna't type fast</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            @font-face {
+                font-family: fancy;
+                src: url(fonts/Milesdane\ Trial.otf);
+            }
+            body{
+                 background-color: brown;
+            }
+            #container{
+                width: 100%;
+                text-align: center;
+            }
+            #output{
+                font-family: "fancy";
+                color: royalblue;
+                background-color: bisque;
+                font-size: 60px;
+                width: 100px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>help me pls</h1>
+            <span id="message"></span>
+            <hr>
+            <br>
+            <h2>Hot single clicks in your area!</h2>
+            <h3 id="output">0</h3>
+            <input type="button" value="I'm the hot single click" id="btn">
+            <input type="button" value="Sorry but I wanna stay single" id="btn-reset">
+        </div>
+        
+
+        <!-- Javascript stuff below -->
+        <script>
+            // example stuff it's commetned out
+            // var name = prompt("gimme da name or the dame gets it")
+            // var firstNumber = prompt("pick a number any number")
+            // var secondNumber = prompt("and anotha one")
+            // var value = firstNumber * secondNumber;
+            // var message = `Sup ${name}.
+            //     \nGet numbered:${firstNumber}
+            //     \nNumber again electric boogaloo:${secondNumber}
+            //     \nHeard you like numbers so i combined it: ${value}`;
+            // console.log(message);
+            // document.getElementById("message").innerHTML = message;
+            // document.getElementById("message").style.color = "green";
+
+            //Get in loser we're making cookie clicker
+
+        var clickerButton = document.querySelector("#btn");
+        var clearButton = document.querySelector("#btn-reset");
+        var clickerOutput = document.querySelector("#output");
+
+        var numberOfClicks = 0;
+
+        clickerButton.addEventListener("click", function(){
+            numberOfClicks++;
+            updateClickerDisplay();
+
+            if(numberOfClicks == 25){
+                alert("Wow you're easily entertained");
+            }
+        });
+
+        clearButton.addEventListener("click", function(){
+            numberOfClicks = 0;
+            clickerOutput.innerHTML = numberOfClicks;
+        });
+
+        function updateClickerDisplay(){
+            clickerOutput.innerHTML = numberOfClicks;
+        }
+        </script>
+    </body>
+</html>
