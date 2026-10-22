@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 3 yay</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name=""viewport" content="width=device-width, initial-scaled=1.0">
+        <style>
+            #container{
+                width: 800px;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>Why ain't autofill working tf</h1>
+            <canvas id="canvas" width="800" height="600" style="border: 1px solid black;">
+                Thanks teacher
+            </canvas>
+        </div>
+
+        <!-- In Doc Javascript -->
+        <script>
+            //Common variables for setting up canvas
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+            //Be there, be square
+            ctx.fillStyle = "#ff0000";
+            ctx.fillRect(canvas.width/2 - 25, canvas.height/2 - 25, 50, 50);
+
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(750, 0, 50, 50);
+
+            ctx.fillStyle = "green";
+            ctx.fillRect(750, 550, 50, 50);
+
+            ctx.fillStyle = "blue";
+            ctx.fillRect(0, 0, 50, 50);
+
+            ctx.fillStyle = "brown";
+            ctx.fillRect(0, 550, 50, 50);
+
+            //Outline box
+            ctx.strokeStyle = "red";
+            ctx.strokeRect(canvas.width/2 - 25, canvas.height - 50, 50, 50);
+
+            //lines bby
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 5.0;
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.lineTo(800, 600);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(800, 0);
+            ctx.lineTo(canvas.width/2 + 25, canvas.height/2 - 25);
+            ctx.lineTo(canvas.width/2 + 25, canvas.height/2 + 25);
+            ctx.lineTo(canvas.width/2 - 25, canvas.height/2 + 25);
+            ctx.lineTo(canvas.width/2 - 25, canvas.height/2 - 25);
+            ctx.lineTo(canvas.width/2 + 25, canvas.height/2 - 25);
+            ctx.stroke();
+
+            //circleGuiltyGear.mp3
+            ctx.fillStyle = "yellow";
+            ctx.lineWidth = 1.0;
+            ctx.beginPath();
+            ctx.arc(200, 300, 100, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fill();
+            ctx.stroke();
+
+            //circleGuiltyGear.mp3 repeat 1
+            ctx.fillStyle = "green";
+            ctx.lineWidth = 1.0;
+            ctx.beginPath();
+            ctx.arc(600, 300, 100, 25 * (Math.PI/100), 315 * (Math.PI/180));
+            ctx.lineTo(600, 300);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        </script>
+    </body>
+</html>
