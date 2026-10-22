@@ -77,11 +77,27 @@
             ctx.fillStyle = "green";
             ctx.lineWidth = 1.0;
             ctx.beginPath();
-            ctx.arc(600, 300, 100, 25 * (Math.PI/100), 315 * (Math.PI/180));
+            ctx.arc(600, 300, 100, degreesToRadians(25), degreesToRadians(180));
             ctx.lineTo(600, 300);
             ctx.closePath();
             ctx.fill();
             ctx.stroke();
+
+            //functions to make things simpler
+            function degreesToRadians(degrees){
+                let radian = degrees * (Math.PI/100)
+                return radian;
+            }
+
+            function drawCircle(xPos, yPos, radius, startAngle, endAngle){
+                ctx.beginPath();
+                ctx.arc(xPos, yPos, radius, degreesToRadians(startAngle), degreesToRadians(endAngle));
+                ctx.fill();
+                ctx.stroke();
+                console.log("circle");
+            }
+
+            drawCircle(10, 10, 10, 0, 360);
         </script>
     </body>
 </html>
