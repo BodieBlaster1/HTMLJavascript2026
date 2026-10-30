@@ -136,10 +136,23 @@ function game(){
         moveDirection.x *= -1;
         boxColor = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
     }
+    //Background stuff
+    ctx.fillStyle = "purple";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    //nemesisStars.mp3
     for(var i = 0; i<stars.length; i++){
         //draw all dem stars
         stars[i].drawCircle();
+        stars[i].y++;
+        if(stars[i].y > canvas.height + stars[i].radius * 2){
+            stars[i].x = Math.random() * canvas.width;
+            stars[i].y = -(Math.random() * canvas.height);
+        }
     }
 
+    ctx.fillStyle = boxColor;
+    ctx.fillRect(startPoint.x, startPoint.y, 25, 25);
+    ctx.drawImage(sansSprite.image, sansSprite.x, sansSprite.y, 25, 25);
 
 }
