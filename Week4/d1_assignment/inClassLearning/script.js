@@ -58,9 +58,12 @@ var space = false;
 var bullets = [];
 var shootCooldown = 0;
 
+//Variable for screensaver
+var boxRespawn = 0;
+
 //On key press
 document.addEventListener("keydown", function(e){
-    console.log(e.key);
+   // console.log(e.key);
     if(e.key == "a"){
         a = true;
     }
@@ -81,7 +84,7 @@ document.addEventListener("keydown", function(e){
 
 //On key release
 document.addEventListener("keyup", function(e){
-    console.log(e.key);
+    //console.log(e.key);
     if(e.key == "a"){
         a = false;
     }
@@ -109,6 +112,20 @@ function game(){
     ctx.fillStyle = boxColor;
     ctx.fillRect(startPoint.x, startPoint.y, 25, 25);
     ctx.drawImage(sansSprite.image, sansSprite.x, sansSprite.y, 25, 25);
+    console.log(boxRespawn);
+
+    //Box repsawn mechanic
+    if(boxRespawn > 0){
+        boxRespawn--;
+    }
+    if(boxRespawn == 1){
+        startPoint.x = canvas.width/2;
+        startPoint.y = canvas.height/2;
+        moveDirection.x = Math.random() * (5 - -5) + -5;
+        moveDirection.y = Math.random() * (5 - -5) + -5;
+        console.log(startPoint.x, startPoint.y);
+        //return;
+    }
 
     var hitBox = sansSprite.x < startPoint.x + 25 &&
                 sansSprite.x + 25 > startPoint.x &&
@@ -123,6 +140,7 @@ function game(){
         sansSprite.moveX = 0;
         sansSprite.moveY = 0;
         score = 0;
+        shotStar = 0;
     }
 
     if(a == true){
@@ -195,6 +213,7 @@ function game(){
         });
         shootCooldown = 10;
     }
+    
 
     //Background stuff
     ctx.fillStyle = "purple";
@@ -212,6 +231,7 @@ function game(){
                 sansSprite.moveX = 0;
                 sansSprite.moveY = 0;
                 score = 0;
+                shotStar = 0;
             }
 
         stars[i].drawCircle();
@@ -239,11 +259,12 @@ function game(){
                     bullet.y < startPoint.y + 25 &&
                     bullet.y + bullet.height > startPoint.y;
         if(hitBox){
-            //remove bullet
+            //remove bullet and increase Stars Destroyed
             bullets.splice(i, 1);
             startPoint.x = 100000000000;
             moveDirection.x = 0;
             moveDirection.y = 0;
+            boxRespawn = 70;
             continue;
         }
         
@@ -252,6 +273,7 @@ function game(){
                 bullets.splice(i, j);
                 stars[j].x = Math.random() * canvas.width;
                 stars[j].y = -(Math.random() * canvas.height);
+                shotStar += 1;
                 continue;
             }
         }
@@ -259,15 +281,16 @@ function game(){
         ctx.fillStyle = bullet.color;
         ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height)
     }
-
+    //Screensaver box
     ctx.fillStyle = boxColor;
     ctx.fillRect(startPoint.x, startPoint.y, 25, 25);
     ctx.drawImage(sansSprite.image, sansSprite.x, sansSprite.y, 25, 25);
 
-    ctx.fillStyle = "white";
     //Draw HUD element
+    ctx.fillStyle = "white";
     ctx.font = "30px Arial";
     ctx.fillText(`Score: ${score}`, 30, 80);
+    ctx.fillText(`Stars Destroyed: ${shotStar}`, 500, 80);
 }
 
 function sansToStarCollision(obj, star){
